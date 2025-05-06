@@ -1,27 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { Autor, AutorService } from './services/Autor/autor.service';
-import { lastValueFrom } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    MatToolbarModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  author!: Autor;
-  title = 'proyecto_angular_DAW1_RosasGrandaAdriano';
-
-  constructor(private autorService: AutorService) {}
-
-  async ngOnInit(): Promise<void> {
-    // this.author = await lastValueFrom(this.autorService.crearAutor({
-    //   // id: 1,
-    //   nombre: "Jhon Doe",
-    //   nacionalidad: "Rusia",
-    // }));
-
-    // console.log(this.author);
-  }
+export class AppComponent {
+  constructor() {}
 }

@@ -2,3 +2,57 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Establecemos un color blanco global para todo el texto */
+body {
+  color: white; /* Todo el texto será blanco por defecto */
+  background-color: #121212; /* Fondo oscuro global */
+  font-family: 'Roboto', sans-serif; /* Fuente por defecto de Material */
+}
+
+/* Aseguramos que el fondo del <main> sea oscuro, igual al de la tarjeta */
+main {
+  background-color: #121212; /* Fondo oscuro similar a la tarjeta */
+  padding: 16px; /* Algo de espacio alrededor del contenido */
+  color: white; /* Texto blanco por defecto en el main */
+}
+
+/* Los componentes tipo mat-card tendrán fondo oscuro y texto blanco */
+.mat-card {
+  background-color: #121212; /* Fondo oscuro de la tarjeta */
+  color: white; /* Texto blanco dentro de la tarjeta */
+}
+
+/* Espaciado entre los campos de formulario */
+mat-form-field {
+  margin-bottom: 20px; /* Más espacio entre los campos */
+}
+
+/* Aseguramos que las etiquetas y los inputs dentro de mat-form-field sean blancos */
+mat-label,
+.mat-input-element {
+  color: white; /* Etiquetas y texto de los campos de entrada serán blancos */
+}
+
+.mat-form-field input {
+  color: white; /* El texto en los inputs será blanco */
+}
+
+/* Mejoramos los botones para que el texto sea blanco */
+button {
+  color: white; /* Botones con texto blanco */
+}
+
+button.mat-raised-button,
+button.mat-stroked-button {
+  color: white; /* Mantener color blanco para los textos de los botones */
+}
+
+button:disabled {
+  background-color: #3e3e3e; /* Un gris más oscuro para los botones deshabilitados */
+}
+
+/* Definimos el color de fondo para los mat-error */
+mat-error {
+  color: #f44336; /* Rojo para los errores */
+}

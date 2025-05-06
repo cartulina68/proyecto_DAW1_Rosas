@@ -1,29 +1,70 @@
-// src/app/components/autor/crear-autor/crear-autor.component.ts
 import { Component } from '@angular/core';
-import { AutorService, Autor } from '../../../services/Autor/autor.service';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { AutorService } from '../../../services/Autor/autor.service';
 
 @Component({
   selector: 'app-crear-autor',
-  templateUrl: './crear-autor.component.html'
+  templateUrl: './crear-autor.component.html',
+  styleUrl: './crear-autor.component.css',
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatSnackBarModule,
+  ],
 })
 export class CrearAutorComponent {
-  autor: Autor = {
-    nombre: '',
-    nacionalidad: ''
-  };
+  autorForm: FormGroup;
 
-  constructor(private autorService: AutorService) {}
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private autorService: AutorService,
+  ) {
+    this.autorForm = this.fb.group({
+      nombre: ['', Validators.required],
+      nacionalidad: ['', Validators.required],
+    });
+  }
+
+  get nombre() {
+    return this.autorForm.get('nombre');
+  }
+
+  get nacionalidad() {
+    return this.autorForm.get('nacionalidad');
+  }
 
   guardarAutor() {
-    this.autorService.crearAutor(this.autor).subscribe({
-      next: () => {
-        alert('Autor creado con éxito');
-        this.autor = { nombre: '', nacionalidad: '' };
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Error al guardar el autor');
-      }
-    });
+    if (this.autorForm.valid) {
+      const nuevoAutor = this.autorForm.value;
+
+      this.autorService.crearAutor(nuevoAutor).subscribe({
+        next: () => {
+          this.snackBar.open('✅ Autor guardado exitosamente', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['snackbar-success']
+          });
+
+          this.autorForm.reset();
+        },
+        error: (err) => {
+          console.log(err);
+          this.snackBar.open('⚠️ Completa todos los campos obligatorios', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error']
+          });
+        },
+      });
+    }
   }
 }
