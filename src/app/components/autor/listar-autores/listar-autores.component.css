@@ -1,0 +1,36 @@
+.autores-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.autores-card {
+  width: 600px;
+  padding: 1rem 2rem;
+  background-color: var(--mat-card-background, #2c2c2c);
+}
+
+.titulo {
+  margin-left: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.tabla {
+  width: 100%;
+  color: white;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 10px 16px;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+}
+
+.sin-datos {
+  margin-top: 1rem;
+  text-align: center;
+  color: #aaa;
+}

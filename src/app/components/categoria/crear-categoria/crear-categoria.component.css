@@ -1,0 +1,52 @@
+.autor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 16px;
+  background-color: #121212;
+  min-height: 100vh;
+}
+
+.autor-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 32px;
+  border-radius: 12px;
+  background-color: #1e1e1e;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+}
+
+mat-form-field {
+  width: 80%;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+mat-form-field.mat-form-field {
+  background: #2c2c2c;
+  border-radius: 6px;
+}
+
+input, textarea {
+  color: white;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding: 1% 37%;
+}
+
+button {
+  color: white;
+}

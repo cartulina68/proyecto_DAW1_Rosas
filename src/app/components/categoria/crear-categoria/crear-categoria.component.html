@@ -1,1 +1,29 @@
-<p>crear-categoria works!</p>
+<div class="categoria-container">
+  <mat-card class="categoria-card mat-elevation-z2">
+    <h2 class="titulo">Registrar Categoría</h2>
+
+    <form [formGroup]="categoriaForm" (ngSubmit)="guardarCategoria()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        @if (nombre?.hasError('required') && (nombre?.dirty || nombre?.touched)) {
+          <mat-error>El nombre es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" />
+      </mat-form-field>
+
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="categoriaForm.invalid">
+          Guardar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="categoriaForm.reset()">
+          Limpiar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

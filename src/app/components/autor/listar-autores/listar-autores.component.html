@@ -1,0 +1,47 @@
+<div class="autores-container">
+  <mat-card class="autores-card mat-elevation-z2">
+    <h2 class="titulo">🎩 Lista de Autores</h2>
+
+    <button mat-raised-button color="accent" routerLink="/crear-autor" routerLinkActive="active-link" style="margin: 1rem 0;">
+      ➕ Crear Autor
+    </button>
+
+
+    <table mat-table [dataSource]="autores" class="tabla mat-elevation-z1" matSort>
+
+      <!-- Nombre -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let autor">{{ autor.nombre }}</td>
+      </ng-container>
+
+      <!-- Nacionalidad -->
+      <ng-container matColumnDef="nacionalidad">
+        <th mat-header-cell *matHeaderCellDef>Nacionalidad</th>
+        <td mat-cell *matCellDef="let autor">{{ autor.nacionalidad }}</td>
+      </ng-container>
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let autor">
+          <button mat-icon-button color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    @if (autores.length === 0) {
+      <p class="sin-datos">No hay autores registrados.</p>
+    }
+
+  </mat-card>
+</div>

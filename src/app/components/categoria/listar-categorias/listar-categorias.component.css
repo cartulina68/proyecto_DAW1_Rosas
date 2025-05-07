@@ -1,0 +1,52 @@
+.categorias-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.categorias-card {
+  width: 800px;
+  padding: 1rem 2rem;
+  background-color: var(--mat-card-background, #2c2c2c);
+}
+
+.titulo {
+  margin-left: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.tabla {
+  width: 100%;
+  color: white;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 10px 16px;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+}
+
+/* Ajustar ancho de columnas */
+th.mat-header-cell:nth-child(1),
+td.mat-cell:nth-child(1) {
+  width: 35%;
+}
+
+th.mat-header-cell:nth-child(2),
+td.mat-cell:nth-child(2) {
+  width: 45%;
+}
+
+th.mat-header-cell:nth-child(3),
+td.mat-cell:nth-child(3) {
+  width: 20%;
+}
+
+.sin-datos {
+  margin-top: 1rem;
+  text-align: center;
+  color: #aaa;
+}

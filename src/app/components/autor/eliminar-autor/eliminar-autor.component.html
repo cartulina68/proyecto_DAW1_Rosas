@@ -1,0 +1,8 @@
+<h2>Eliminar Autor</h2>
+
+<label for="idAutor">ID del autor a eliminar:</label>
+<input id="idAutor" [(ngModel)]="idEliminar" type="number" required />
+
+<button mat-raised-button color="warn" (click)="eliminarAutor()">
+  Eliminar
+</button>

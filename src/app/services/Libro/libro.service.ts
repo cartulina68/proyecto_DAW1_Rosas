@@ -1,15 +1,24 @@
-// src/app/services/libro.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+export interface Autor {
+  id: number;
+  nombre: string;
+}
+
+export interface Categoria {
+  id: number;
+  nombre: string;
+}
 
 export interface Libro {
   id?: number;
   titulo: string;
   isbn: string;
   anioPublicacion: number;
-  autor: any;       // Puedes tipar con Autor si importas el modelo
-  categoria: any;   // Puedes tipar con Categoria si importas el modelo
+  autor: Autor;           // Ya no es autor_id
+  categoria: Categoria;   // Ya no es categoria_id
 }
 
 @Injectable({
@@ -20,7 +29,19 @@ export class LibroService {
 
   constructor(private http: HttpClient) {}
 
+  listarLibros(): Observable<Libro[]> {
+    return this.http.get<Libro[]>(this.apiUrl);
+  }
+
   crearLibro(libro: Libro): Observable<Libro> {
     return this.http.post<Libro>(this.apiUrl, libro);
+  }
+
+  actualizarLibro(id: number, libro: Libro): Observable<Libro> {
+    return this.http.put<Libro>(`${this.apiUrl}/${id}`, libro);
+  }
+
+  eliminarLibro(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

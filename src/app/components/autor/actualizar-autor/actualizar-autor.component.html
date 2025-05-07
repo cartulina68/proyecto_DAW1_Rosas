@@ -1,0 +1,20 @@
+<h2>Actualizar Autor</h2>
+
+<mat-form-field appearance="fill">
+  <mat-label>ID del autor</mat-label>
+  <input matInput type="number" [(ngModel)]="id" required />
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Nuevo nombre</mat-label>
+  <input matInput type="text" [(ngModel)]="autor.nombre" required />
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Nueva nacionalidad</mat-label>
+  <input matInput type="text" [(ngModel)]="autor.nacionalidad" required />
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="actualizarAutor()">
+  Actualizar
+</button>
