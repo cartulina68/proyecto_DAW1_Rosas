@@ -1,1 +1,32 @@
-<p>actualizar-categoria works!</p>
+<div class="categoria-container">
+  <mat-card class="categoria-card mat-elevation-z2">
+    <h2 class="titulo">Actualizar Categoría</h2>
+
+    <form [formGroup]="categoriaForm" (ngSubmit)="guardarCategoria()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error *ngIf="nombre?.hasError('required') && (nombre?.dirty || nombre?.touched)">
+          El nombre es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" />
+        <mat-error *ngIf="descripcion?.hasError('required') && (descripcion?.dirty || descripcion?.touched)">
+          La descripción es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="categoriaForm.invalid">
+          Guardar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

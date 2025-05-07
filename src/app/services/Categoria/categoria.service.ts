@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Categoria {
-  id: number;
+  id?: number;
   nombre: string;
   descripcion: string;
 }
@@ -33,7 +33,6 @@ export class CategoriaService {
   }
 
   obtenerCategoriaPorId(id: number): Observable<Categoria> {
-      return this.http.get<Categoria>(`${this.apiUrl}/${id}`);
+    return this.http.get<Categoria>(`${this.apiUrl}/${id}`);
   }
-
 }

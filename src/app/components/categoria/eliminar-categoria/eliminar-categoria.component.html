@@ -1,1 +1,8 @@
-<p>eliminar-categoria works!</p>
+<h2 mat-dialog-title>¿Deseas eliminar la categoría <b>{{ categoria.nombre }}</b>?</h2>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button (click)="eliminarCategoria()" cdkFocusInitial>
+    Eliminar
+  </button>
+</mat-dialog-actions>

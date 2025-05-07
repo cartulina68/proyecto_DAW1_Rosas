@@ -14,14 +14,17 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion" />
+        @if (descripcion?.hasError('required') && (descripcion?.dirty || descripcion?.touched)) {
+          <mat-error>La descripción es obligatoria.</mat-error>
+        }
       </mat-form-field>
 
       <div class="botones">
         <button mat-flat-button color="primary" type="submit" [disabled]="categoriaForm.invalid">
           Guardar
         </button>
-        <button mat-stroked-button color="warn" type="button" (click)="categoriaForm.reset()">
-          Limpiar
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
         </button>
       </div>
     </form>
