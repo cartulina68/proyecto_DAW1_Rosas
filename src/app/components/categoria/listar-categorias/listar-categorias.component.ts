@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatTableModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './listar-categorias.component.html',
   styleUrl: './listar-categorias.component.css'

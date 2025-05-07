@@ -18,7 +18,7 @@ export const routes: Routes =  [
 
   // AUTOR
   { path: 'autores', component: ListarAutoresComponent },
-  { path: 'crear-autor', component: CrearAutorComponent },
+  // { path: 'crear-autor', component: CrearAutorComponent },
   // { path: 'actualizar-autor', component: ActualizarAutorComponent },
   // { path: 'eliminar-autor', component: EliminarAutorComponent },
 

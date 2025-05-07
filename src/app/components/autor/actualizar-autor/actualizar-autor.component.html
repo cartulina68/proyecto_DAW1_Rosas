@@ -1,20 +1,32 @@
-<h2>Actualizar Autor</h2>
+<div class="autor-container">
+  <mat-card class="autor-card mat-elevation-z2">
+    <h2 class="titulo">Actualizar Autor</h2>
 
-<mat-form-field appearance="fill">
-  <mat-label>ID del autor</mat-label>
-  <input matInput type="number" [(ngModel)]="id" required />
-</mat-form-field>
+    <form [formGroup]="autorForm" (ngSubmit)="guardarAutor()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        @if (nombre?.hasError('required') && (nombre?.dirty || nombre?.touched)) {
+          <mat-error>El nombre es obligatorio.</mat-error>
+        }
+      </mat-form-field>
 
-<mat-form-field appearance="fill">
-  <mat-label>Nuevo nombre</mat-label>
-  <input matInput type="text" [(ngModel)]="autor.nombre" required />
-</mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nacionalidad</mat-label>
+        <input matInput formControlName="nacionalidad" />
+        @if (nacionalidad?.hasError('required') && (nacionalidad?.dirty || nacionalidad?.touched)) {
+          <mat-error>La nacionalidad es obligatoria.</mat-error>
+        }
+      </mat-form-field>
 
-<mat-form-field appearance="fill">
-  <mat-label>Nueva nacionalidad</mat-label>
-  <input matInput type="text" [(ngModel)]="autor.nacionalidad" required />
-</mat-form-field>
-
-<button mat-raised-button color="primary" (click)="actualizarAutor()">
-  Actualizar
-</button>
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="autorForm.invalid">
+          Guardar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

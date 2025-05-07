@@ -1,8 +1,8 @@
-<h2>Eliminar Autor</h2>
+<h2 mat-dialog-title>¿Deseas eliminar al autor <b>{{ autor.nombre }}</b>?</h2>
 
-<label for="idAutor">ID del autor a eliminar:</label>
-<input id="idAutor" [(ngModel)]="idEliminar" type="number" required />
-
-<button mat-raised-button color="warn" (click)="eliminarAutor()">
-  Eliminar
-</button>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancelar()">Cancel</button>
+  <button mat-flat-button (click)="eliminarAutor()" cdkFocusInitial>
+    Eliminar
+  </button>
+</mat-dialog-actions>

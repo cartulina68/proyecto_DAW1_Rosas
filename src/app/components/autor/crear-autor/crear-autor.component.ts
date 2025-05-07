@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AutorService } from '../../../services/Autor/autor.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-crear-autor',
@@ -27,6 +28,7 @@ export class CrearAutorComponent {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private autorService: AutorService,
+    private dialogRef: MatDialogRef<CrearAutorComponent>,
   ) {
     this.autorForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -55,6 +57,7 @@ export class CrearAutorComponent {
           });
 
           this.autorForm.reset();
+          this.dialogRef.close();
         },
         error: (err) => {
           console.log(err);
@@ -66,5 +69,10 @@ export class CrearAutorComponent {
         },
       });
     }
+  }
+
+  cancelar() {
+    this.autorForm.reset();
+    this.dialogRef.close();
   }
 }

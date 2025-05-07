@@ -32,7 +32,7 @@ export class AutorService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  // obtenerAutorPorId(id: number): Observable<Autor> {
-  //   return this.http.get<Autor>(`${this.apiUrl}/${id}`);
-  // }
+  obtenerAutorPorId(id: number): Observable<Autor> {
+    return this.http.get<Autor>(`${this.apiUrl}/${id}`);
+  }
 }
