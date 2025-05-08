@@ -1,1 +1,62 @@
-<p>actualizar-libro works!</p>
+<div class="categoria-container">
+  <mat-card class="categoria-card mat-elevation-z2">
+    <h2 class="titulo">Actualizar Libro</h2>
+
+    <form [formGroup]="libroForm" (ngSubmit)="actualizarLibro()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" />
+        @if (libroForm.get('titulo')?.hasError('required') && (libroForm.get('titulo')?.dirty || libroForm.get('titulo')?.touched)) {
+          <mat-error>El título es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- ISBN -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>ISBN</mat-label>
+        <input matInput formControlName="isbn" />
+        @if (isbn?.hasError('required') && (isbn?.dirty || isbn?.touched)) {
+          <mat-error>El ISBN es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Año de Publicación</mat-label>
+        <input matInput formControlName="anioPublicacion" type="number" />
+        @if (libroForm.get('anioPublicacion')?.hasError('required') && (libroForm.get('anioPublicacion')?.dirty || libroForm.get('anioPublicacion')?.touched)) {
+          <mat-error>El año es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Autor</mat-label>
+        <mat-select formControlName="autorId">
+          <mat-option *ngFor="let autor of autores" [value]="autor.id">
+            {{ autor.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="categoriaId">
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Botones -->
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="libroForm.invalid">
+          Guardar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

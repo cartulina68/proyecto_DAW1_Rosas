@@ -14,6 +14,12 @@ import { CrearCategoriaComponent } from './components/categoria/crear-categoria/
 import { ListarLibrosComponent } from './components/libro/listar-libros/listar-libros.component';
 import { CrearLibroComponent } from './components/libro/crear-libro/crear-libro.component';
 
+// USUARIO
+import { ListarUsuariosComponent } from './components/usuario/listar-usuarios/listar-usuarios.component';
+
+// PRESTAMOS
+
+
 export const routes: Routes =  [
 
   // AUTOR
@@ -28,5 +34,9 @@ export const routes: Routes =  [
 
   // LIBRO
   { path: 'libros', component: ListarLibrosComponent},
-  { path: 'crear-libro', component: CrearLibroComponent}
+  { path: 'crear-libro', component: CrearLibroComponent},
+
+  // USUARIO
+  { path: 'usuarios', component: ListarUsuariosComponent},
+
 ];

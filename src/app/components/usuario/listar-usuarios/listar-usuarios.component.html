@@ -1,1 +1,54 @@
-<p>listar-usuarios works!</p>
+<div class="usuarios-container">
+  <mat-card class="usuarios-card mat-elevation-z2">
+    <h2 class="titulo">👤 Lista de Usuarios</h2>
+
+    <button
+      mat-raised-button color="accent"
+      style="margin: 1rem 0;"
+      (click)="openCrearUsuarioDialog()"
+    >
+      <mat-icon aria-hidden="false" aria-label="Crear usuario icon" fontIcon="add"></mat-icon>
+      Crear Usuario
+    </button>
+
+    <table mat-table [dataSource]="usuarios" class="tabla mat-elevation-z1" matSort>
+      <!-- Nombre -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let usuario">{{ usuario.nombre }}</td>
+      </ng-container>
+
+      <!-- Correo -->
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let usuario">{{ usuario.correo }}</td>
+      </ng-container>
+
+      <!-- Teléfono -->
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+        <td mat-cell *matCellDef="let usuario">{{ usuario.telefono }}</td>
+      </ng-container>
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let usuario">
+          <button mat-icon-button color="primary" (click)="openActualizarUsuarioDialog(usuario.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openEliminarUsuarioDialog(usuario)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    @if (usuarios.length === 0) {
+      <p class="sin-datos">No hay usuarios registrados.</p>
+    }
+  </mat-card>
+</div>

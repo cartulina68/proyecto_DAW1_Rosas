@@ -1,1 +1,43 @@
-<p>actualizar-usuario works!</p>
+<div class="usuario-container">
+  <mat-card class="usuario-card mat-elevation-z2">
+    <h2 class="titulo">Actualizar Usuario</h2>
+
+    <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error *ngIf="nombre?.hasError('required') && (nombre?.dirty || nombre?.touched)">
+          El nombre es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo Electrónico</mat-label>
+        <input matInput formControlName="correo" />
+        <mat-error *ngIf="correo?.hasError('required') && (correo?.dirty || correo?.touched)">
+          El correo es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="correo?.hasError('email') && (correo?.dirty || correo?.touched)">
+          El correo no es válido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" />
+        <mat-error *ngIf="telefono?.hasError('required') && (telefono?.dirty || telefono?.touched)">
+          El teléfono es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="usuarioForm.invalid">
+          Guardar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

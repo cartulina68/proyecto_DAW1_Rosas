@@ -12,6 +12,15 @@
         }
       </mat-form-field>
 
+      <!-- ISBN -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>ISBN</mat-label>
+        <input matInput formControlName="isbn" />
+        @if (isbn?.hasError('required') && (isbn?.dirty || isbn?.touched)) {
+          <mat-error>El ISBN es obligatorio.</mat-error>
+        }
+      </mat-form-field>
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Año de Publicación</mat-label>
         <input matInput formControlName="anioPublicacion" type="number" />
@@ -38,12 +47,13 @@
         </mat-select>
       </mat-form-field>
 
+      <!-- Botones -->
       <div class="botones">
         <button mat-flat-button color="primary" type="submit" [disabled]="libroForm.invalid">
           Guardar
         </button>
-        <button mat-stroked-button color="warn" type="button" (click)="libroForm.reset()">
-          Limpiar
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
         </button>
       </div>
 

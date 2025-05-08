@@ -2,44 +2,56 @@
   <mat-card class="libros-card mat-elevation-z2">
     <h2 class="titulo">📚 Lista de Libros</h2>
 
-    <button mat-raised-button color="accent" routerLink="/crear-libro" routerLinkActive="active-link" style="margin: 2rem 0;">
-      ➕ Crear Libro
+    <button
+      mat-raised-button color="accent"
+      routerLink="/crear-libro"
+      routerLinkActive="active-link"
+      style="margin: 1rem 0;"
+      (click)="openCrearLibroDialog()"
+    >
+      <mat-icon aria-hidden="false" aria-label="Crear libro icon" fontIcon="add"></mat-icon>
+      Crear Libro
     </button>
 
     <table mat-table [dataSource]="libros" class="tabla mat-elevation-z1" matSort>
-
       <!-- Título -->
       <ng-container matColumnDef="titulo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
+        <th mat-header-cell *matHeaderCellDef>Título</th>
         <td mat-cell *matCellDef="let libro">{{ libro.titulo }}</td>
       </ng-container>
 
-      <!-- Autor -->
-      <ng-container matColumnDef="autor">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor</th>
-        <td mat-cell *matCellDef="let libro">{{ libro.autor.nombre }}</td>
-      </ng-container>
-
-      <!-- Categoría -->
-      <ng-container matColumnDef="categoria">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría</th>
-        <td mat-cell *matCellDef="let libro">{{ libro.categoria.nombre }}</td>
+      <!-- ISBN -->
+      <ng-container matColumnDef="isbn">
+        <th mat-header-cell *matHeaderCellDef>ISBN</th>
+        <td mat-cell *matCellDef="let libro">{{ libro.isbn }}</td>
       </ng-container>
 
       <!-- Año de Publicación -->
       <ng-container matColumnDef="anioPublicacion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Año</th>
-        <td mat-cell *matCellDef="let libro">{{ libro.anioPublicacion }}</td>
+        <th mat-header-cell *matHeaderCellDef>Año</th>
+        <td mat-cell *matCellDef="let libro">{{ libro.anio_publicacion }}</td>
+      </ng-container>
+
+      <!-- Autor -->
+      <ng-container matColumnDef="autor">
+        <th mat-header-cell *matHeaderCellDef>Autor</th>
+        <td mat-cell *matCellDef="let libro">{{ libro.autor?.nombre }}</td>
+      </ng-container>
+
+      <!-- Categoría -->
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef>Categoría</th>
+        <td mat-cell *matCellDef="let libro">{{ libro.categoria?.nombre }}</td>
       </ng-container>
 
       <!-- Acciones -->
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let libro">
-          <button mat-icon-button color="primary">
+          <button mat-icon-button color="primary" (click)="openActualizarLibroDialog(libro.id)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn">
+          <button mat-icon-button color="warn" (click)="openEliminarLibroDialog(libro)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -49,6 +61,8 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <p *ngIf="libros.length === 0" class="sin-datos">No hay libros registrados.</p>
+    @if (libros.length === 0) {
+      <p class="sin-datos">No hay libros registrados.</p>
+    }
   </mat-card>
 </div>

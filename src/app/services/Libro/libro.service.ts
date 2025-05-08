@@ -2,23 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export interface Autor {
-  id: number;
-  nombre: string;
-}
-
-export interface Categoria {
-  id: number;
-  nombre: string;
-}
-
 export interface Libro {
   id?: number;
   titulo: string;
   isbn: string;
-  anioPublicacion: number;
-  autor: Autor;           // Ya no es autor_id
-  categoria: Categoria;   // Ya no es categoria_id
+  anioPublicacion: string;
+  autor_id: number;
+  categoria_id: number;
 }
 
 @Injectable({
@@ -43,5 +33,9 @@ export class LibroService {
 
   eliminarLibro(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  obtenerLibroPorId(id: number): Observable<Libro> {
+    return this.http.get<Libro>(`${this.apiUrl}/${id}`);
   }
 }

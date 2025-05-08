@@ -1,4 +1,3 @@
-// src/app/services/usuario.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,7 +17,23 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
+  listarUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl);
+  }
+
   crearUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario);
+  }
+
+  actualizarUsuario(id: number, usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.apiUrl}/${id}`, usuario);
+  }
+
+  eliminarUsuario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  obtenerUsuarioPorId(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,1 +1,8 @@
-<p>eliminar-usuario works!</p>
+<h2 mat-dialog-title>¿Deseas eliminar al usuario <b>{{ usuario.nombre }}</b>?</h2>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button (click)="eliminarUsuario()" cdkFocusInitial>
+    Eliminar
+  </button>
+</mat-dialog-actions>

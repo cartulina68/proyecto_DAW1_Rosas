@@ -1,1 +1,8 @@
-<p>eliminar-libro works!</p>
+<h2 mat-dialog-title>¿Deseas eliminar el libro <b>{{ libro.titulo }}</b>?</h2>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="warn" (click)="eliminarLibro()" cdkFocusInitial>
+    Eliminar
+  </button>
+</mat-dialog-actions>
