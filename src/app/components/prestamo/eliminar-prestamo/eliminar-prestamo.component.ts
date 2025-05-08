@@ -4,6 +4,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogTitle } from '@angular/material/dialog';
+import { Usuario } from '../../../services/Usuario/usuario.service';
+import { Libro } from '../../../services/Libro/libro.service';
+
+type PrestamoData = Prestamo & {
+  usuario: Usuario,
+  libro: Libro,
+}
 
 @Component({
   selector: 'app-eliminar-prestamo',
@@ -16,9 +23,11 @@ export class EliminarPrestamoComponent {
   constructor(
     private prestamoService: PrestamoService,
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public prestamo: Required<Prestamo>,
+    @Inject(MAT_DIALOG_DATA) public prestamo: Required<PrestamoData>,
     private dialogRef: MatDialogRef<EliminarPrestamoComponent>,
-  ) {}
+  ) {
+    console.log(prestamo)
+  }
 
   eliminarPrestamo() {
     this.prestamoService.eliminarPrestamo(this.prestamo.id).subscribe({

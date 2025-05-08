@@ -33,18 +33,26 @@
       <!-- Fecha de Préstamo -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Fecha de Préstamo</mat-label>
-        <input matInput type="date" formControlName="fechaPrestamo" />
+        <input matInput [matDatepicker]="pickerPrestamo" formControlName="fechaPrestamo" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerPrestamo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerPrestamo></mat-datepicker>
+
         @if (prestamoForm.get('fechaPrestamo')?.invalid && prestamoForm.get('fechaPrestamo')?.touched) {
           <mat-error>La fecha es obligatoria.</mat-error>
+
         }
       </mat-form-field>
 
       <!-- Fecha de Devolución -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Fecha de Devolución</mat-label>
-        <input matInput type="date" formControlName="fechaDevolucion" />
+        <input matInput [matDatepicker]="pickerDevolucion" formControlName="fechaDevolucion" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerDevolucion"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDevolucion></mat-datepicker>
+
         @if (prestamoForm.get('fechaDevolucion')?.invalid && prestamoForm.get('fechaDevolucion')?.touched) {
           <mat-error>La fecha es obligatoria.</mat-error>
+
         }
       </mat-form-field>
 

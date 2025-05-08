@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 
 export interface Prestamo {
   id?: number;
-  usuario_id: number;
-    libro_id: number;
+  usuarioId: number;
+  libroId: number;
   fechaPrestamo: string;
   fechaDevolucion: string;
 }
@@ -23,11 +23,27 @@ export class PrestamoService {
   }
 
   crearPrestamo(prestamo: Prestamo): Observable<Prestamo> {
-    return this.http.post<Prestamo>(this.apiUrl, prestamo);
+    return this.http.post<Prestamo>(this.apiUrl, {
+      ...prestamo,
+      libro: {
+        id: prestamo.libroId,
+      },
+      usuario: {
+        id: prestamo.usuarioId,
+      },
+    });
   }
 
   actualizarPrestamo(id: number, prestamo: Prestamo): Observable<Prestamo> {
-    return this.http.put<Prestamo>(`${this.apiUrl}/${id}`, prestamo);
+    return this.http.put<Prestamo>(`${this.apiUrl}/${id}`, {
+      ...prestamo,
+      libro: {
+        id: prestamo.libroId,
+      },
+      usuario: {
+        id: prestamo.usuarioId,
+      },
+    });
   }
 
   eliminarPrestamo(id: number): Observable<void> {

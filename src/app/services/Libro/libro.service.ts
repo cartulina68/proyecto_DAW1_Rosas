@@ -7,8 +7,8 @@ export interface Libro {
   titulo: string;
   isbn: string;
   anioPublicacion: string;
-  autor_id: number;
-  categoria_id: number;
+  autorId: number;
+  categoriaId: number;
 }
 
 @Injectable({
@@ -24,11 +24,27 @@ export class LibroService {
   }
 
   crearLibro(libro: Libro): Observable<Libro> {
-    return this.http.post<Libro>(this.apiUrl, libro);
+    return this.http.post<Libro>(this.apiUrl, {
+      ...libro,
+      autor: {
+        id: libro.autorId,
+      },
+      categoria: {
+        id: libro.categoriaId,
+      },
+    });
   }
 
   actualizarLibro(id: number, libro: Libro): Observable<Libro> {
-    return this.http.put<Libro>(`${this.apiUrl}/${id}`, libro);
+    return this.http.put<Libro>(`${this.apiUrl}/${id}`, {
+      ...libro,
+      autor: {
+        id: libro.autorId,
+      },
+      categoria: {
+        id: libro.categoriaId,
+      },
+    });
   }
 
   eliminarLibro(id: number): Observable<void> {

@@ -11,6 +11,7 @@ import { PrestamoService } from '../../../services/Prestamo/prestamo.service';
 import { LibroService, Libro } from '../../../services/Libro/libro.service';
 import { UsuarioService, Usuario } from '../../../services/Usuario/usuario.service';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-crear-prestamo',
@@ -26,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatSnackBarModule,
     MatCardModule,
+    MatDatepickerModule,
   ],
 })
 export class CrearPrestamoComponent {

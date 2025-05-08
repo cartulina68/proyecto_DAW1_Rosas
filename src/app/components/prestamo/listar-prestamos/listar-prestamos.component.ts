@@ -65,6 +65,7 @@ export class ListarPrestamosComponent {
   private cargarPrestamos() {
     this.prestamoService.listarPrestamos().subscribe({
       next: (prestamos) => {
+        console.log(prestamos);
         this.prestamos = prestamos;
       },
       error: (err) => {
