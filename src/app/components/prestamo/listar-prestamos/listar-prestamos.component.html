@@ -1,0 +1,63 @@
+<div class="prestamos-container">
+  <mat-card class="prestamos-card mat-elevation-z2">
+    <h2 class="titulo">📚 Lista de Préstamos</h2>
+
+    <button
+      mat-raised-button color="accent"
+      style="margin: 1rem 0;"
+      (click)="openCrearPrestamoDialog()"
+    >
+      <mat-icon aria-hidden="false" aria-label="Crear préstamo icon" fontIcon="add"></mat-icon>
+      Crear Préstamo
+    </button>
+
+    <table mat-table [dataSource]="prestamos" class="tabla mat-elevation-z1" matSort>
+
+      <!-- Usuario -->
+      <ng-container matColumnDef="usuario_id">
+        <th mat-header-cell *matHeaderCellDef>Usuario ID</th>
+        <td mat-cell *matCellDef="let prestamo">{{ prestamo.usuario_id }}</td>
+      </ng-container>
+
+      <!-- Libro -->
+      <ng-container matColumnDef="libro_id">
+        <th mat-header-cell *matHeaderCellDef>Libro ID</th>
+        <td mat-cell *matCellDef="let prestamo">{{ prestamo.libro_id }}</td>
+      </ng-container>
+
+      <!-- Fecha de Préstamo -->
+      <ng-container matColumnDef="fechaPrestamo">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Préstamo</th>
+        <td mat-cell *matCellDef="let prestamo">{{ prestamo.fechaPrestamo | date }}</td>
+      </ng-container>
+
+      <!-- Fecha de Devolución -->
+      <ng-container matColumnDef="fechaDevolucion">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Devolución</th>
+        <td mat-cell *matCellDef="let prestamo">{{ prestamo.fechaDevolucion | date }}</td>
+      </ng-container>
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let prestamo">
+          <button mat-icon-button color="primary" (click)="openActualizarPrestamoDialog(prestamo.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openEliminarPrestamoDialog(prestamo)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    @if (prestamos.length === 0) {
+      <p class="sin-datos">No hay préstamos registrados.</p>
+    }
+
+  </mat-card>
+</div>

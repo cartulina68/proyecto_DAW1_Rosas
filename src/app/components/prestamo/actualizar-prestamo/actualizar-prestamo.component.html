@@ -1,0 +1,48 @@
+<div class="prestamo-container">
+  <mat-card class="prestamo-card mat-elevation-z2">
+    <h2 class="titulo">Actualizar Préstamo</h2>
+
+    <form [formGroup]="prestamoForm" (ngSubmit)="actualizarPrestamo()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>ID Libro</mat-label>
+        <input matInput formControlName="idLibro" type="number" />
+        <mat-error *ngIf="prestamoForm.get('idLibro')?.hasError('required') && (prestamoForm.get('idLibro')?.dirty || prestamoForm.get('idLibro')?.touched)">
+          El ID del libro es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>ID Usuario</mat-label>
+        <input matInput formControlName="idUsuario" type="number" />
+        <mat-error *ngIf="prestamoForm.get('idUsuario')?.hasError('required') && (prestamoForm.get('idUsuario')?.dirty || prestamoForm.get('idUsuario')?.touched)">
+          El ID del usuario es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de Préstamo</mat-label>
+        <input matInput formControlName="fechaPrestamo" type="date" />
+        <mat-error *ngIf="prestamoForm.get('fechaPrestamo')?.hasError('required') && (prestamoForm.get('fechaPrestamo')?.dirty || prestamoForm.get('fechaPrestamo')?.touched)">
+          La fecha de préstamo es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de Devolución</mat-label>
+        <input matInput formControlName="fechaDevolucion" type="date" />
+        <mat-error *ngIf="prestamoForm.get('fechaDevolucion')?.hasError('required') && (prestamoForm.get('fechaDevolucion')?.dirty || prestamoForm.get('fechaDevolucion')?.touched)">
+          La fecha de devolución es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="prestamoForm.invalid">
+          Actualizar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

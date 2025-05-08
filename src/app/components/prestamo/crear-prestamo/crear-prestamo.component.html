@@ -1,0 +1,62 @@
+<div class="prestamo-container">
+  <mat-card class="prestamo-card mat-elevation-z2">
+    <h2 class="titulo">📚 Registrar Préstamo</h2>
+
+    <form [formGroup]="prestamoForm" (ngSubmit)="guardarPrestamo()">
+
+      <!-- Selección de Libro -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Libro</mat-label>
+        <mat-select formControlName="libroId">
+          <mat-option *ngFor="let libro of libros" [value]="libro.id">
+            {{ libro.titulo }}
+          </mat-option>
+        </mat-select>
+        @if (prestamoForm.get('libroId')?.invalid && (prestamoForm.get('libroId')?.touched || prestamoForm.get('libroId')?.dirty)) {
+          <mat-error>Debes seleccionar un libro.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Selección de Usuario -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="usuarioId">
+          <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+            {{ usuario.nombre }}
+          </mat-option>
+        </mat-select>
+        @if (prestamoForm.get('usuarioId')?.invalid && (prestamoForm.get('usuarioId')?.touched || prestamoForm.get('usuarioId')?.dirty)) {
+          <mat-error>Debes seleccionar un usuario.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Fecha de Préstamo -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de Préstamo</mat-label>
+        <input matInput type="date" formControlName="fechaPrestamo" />
+        @if (prestamoForm.get('fechaPrestamo')?.invalid && prestamoForm.get('fechaPrestamo')?.touched) {
+          <mat-error>La fecha es obligatoria.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Fecha de Devolución -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de Devolución</mat-label>
+        <input matInput type="date" formControlName="fechaDevolucion" />
+        @if (prestamoForm.get('fechaDevolucion')?.invalid && prestamoForm.get('fechaDevolucion')?.touched) {
+          <mat-error>La fecha es obligatoria.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Botones -->
+      <div class="botones">
+        <button mat-flat-button color="primary" type="submit" [disabled]="prestamoForm.invalid">
+          Guardar
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

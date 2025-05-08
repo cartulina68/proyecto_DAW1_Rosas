@@ -18,7 +18,7 @@ import { CrearLibroComponent } from './components/libro/crear-libro/crear-libro.
 import { ListarUsuariosComponent } from './components/usuario/listar-usuarios/listar-usuarios.component';
 
 // PRESTAMOS
-
+import { ListarPrestamosComponent } from './components/prestamo/listar-prestamos/listar-prestamos.component';
 
 export const routes: Routes =  [
 
@@ -39,4 +39,6 @@ export const routes: Routes =  [
   // USUARIO
   { path: 'usuarios', component: ListarUsuariosComponent},
 
+  // PRESTAMOS
+  { path: 'prestamos', component: ListarPrestamosComponent}
 ];
